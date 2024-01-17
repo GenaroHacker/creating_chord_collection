@@ -1,4 +1,4 @@
-transposable = [[4, 3, 4, 4, None, None],
+transposable_figures = [[4, 3, 4, 4, None, None],
  [1, 2, 1, 3, None, None],
  [1, 1, 1, 3, 4, None],
  [2, 2, 3, 4, 4, 2],
