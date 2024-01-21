@@ -1,4 +1,5 @@
 import sqlite3
+from creating_chord_collection.collection.chord import GuitarChord
 
 class ChordCollection:
     def __init__(self):
