@@ -1,5 +1,4 @@
 import sqlite3
-from collections import defaultdict
 
 class ChordCollection:
     def __init__(self):
