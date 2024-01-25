@@ -65,7 +65,7 @@ class AbstractBuilder:
 
     def draw_note_at_coordenate(self, coordenate, color_a, color_b, label=''):
         if self.is_horizontal:
-            rotation_angle = 225
+            rotation_angle = -225
         else:
             rotation_angle = 135
         
