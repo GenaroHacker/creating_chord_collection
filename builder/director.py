@@ -14,10 +14,7 @@ class Director:
         self._builder.draw_frets()
         self._builder.draw_strings()
         self._builder.draw_notes()
-
-        # Write the name on the diagram
-        if name:
-            self._builder.write_name(name)
+        self._builder.write_name(name)
 
     def build_chord(self, chord):
         # Generate the name for the chord
@@ -25,7 +22,8 @@ class Director:
         self._build_diagram(chord.root, chord.starting_fret, finger_ascending=chord.finger_ascending, name=chord_name)
 
     def build_scale(self, root, scale):
-        # Find the scale name or use the string representation of the scale
+        self._builder.name_coordenate = (self._builder.name_coordenate[0] - 45, self._builder.name_coordenate[1])
+
         scale_name = None
         for key, value in scales.items():
             if value == scale:
