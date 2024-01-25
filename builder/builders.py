@@ -3,7 +3,6 @@ from PIL import Image, ImageDraw, ImageFont
 class AbstractBuilder:
     all_notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
     open_string_notes = ["E", "B", "G", "D", "A", "E"]
-    scale_degrees = ['I', '', 'II', '', 'III', 'IV', '', 'V', '', 'VI', '', 'VII']
 
     def __init__(self):
         self.image_size = None
@@ -179,6 +178,8 @@ class AbstractBuilder:
 
     
     def draw_notes(self):
+        scale_degrees = ['I', '', 'II', '', 'III', 'IV', '', 'V', '', 'VI', '', 'VII']
+        
         # Calculate the chromatic scale starting from the root
         root_index = self.all_notes.index(self.root)
         chromatic_scale = [self.all_notes[(root_index + i) % len(self.all_notes)] for i in range(len(self.all_notes))]
