@@ -88,7 +88,10 @@ class Director:
         if self._current_row_images:  # Append any remaining images
             self._all_rows.append(self._concatenate_images(self._current_row_images))
 
-        self._composite_image = self._concatenate_images(self._all_rows, direction='vertical')
+        if self._all_rows:
+            self._composite_image = self._concatenate_images(self._all_rows, direction='vertical')
+        else:
+            print("No chords were processed to create an image.")
 
     def save_image(self, file_path):
         """
