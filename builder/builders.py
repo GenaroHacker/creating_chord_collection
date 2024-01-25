@@ -184,6 +184,10 @@ class AbstractBuilder:
 
     
     def draw_notes(self):
+        # Check if finger_ascending is provided, indicating a chord is being built
+        if self.finger_ascending is not None and self.is_horizontal:
+            raise ValueError("Chords cannot be built by LongBuilder")
+
         scale_degrees = ['I', '', 'II', '', 'III', 'IV', '', 'V', '', 'VI', '', 'VII']
         
         # Calculate the chromatic scale starting from the root
