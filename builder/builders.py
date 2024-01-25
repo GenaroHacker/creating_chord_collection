@@ -111,6 +111,7 @@ class AbstractBuilder:
             string_coord, fret_coord = coordenate
             string_index = find_string_index(string_coord, self.notes_coordenates["strings"])
             fret_index = find_string_index(fret_coord, self.notes_coordenates["frets"])
+            fret_index += self.starting_fret - 1
         else:
             fret_coord, string_coord = coordenate
             fret_index = find_string_index(fret_coord, self.notes_coordenates["frets"])
