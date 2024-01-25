@@ -33,3 +33,20 @@ class Director:
             scale_name = root
 
         self._build_diagram(root, starting_fret=1, scale=scale, name=scale_name)
+
+    def save_image(self, file_path):
+        """
+        Save the image to a file.
+        :param file_path: The path where the image will be saved.
+        """
+        image = self._builder.get_result()
+        image.save(file_path)
+
+    def display_image(self):
+        """
+        Display the image using the IPython display function.
+        """
+        image = self._builder.get_result()
+        display(image)
+
+        
