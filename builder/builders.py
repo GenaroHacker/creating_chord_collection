@@ -3,6 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 class AbstractBuilder:
     all_notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
     open_string_notes = ["E", "B", "G", "D", "A", "E"]
+    scale_degrees = ['I', '', 'II', '', 'III', 'IV', '', 'V', '', 'VI', '', 'VII']
 
     def __init__(self):
         self.image_size = None
