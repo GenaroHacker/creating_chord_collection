@@ -63,7 +63,12 @@ class AbstractBuilder:
         raise ValueError(f"Unrecognized note: {note}")
 
 
-    def draw_note_at_coordenate(self, coordenate, color_a, color_b, rotation_angle=45, label=''):
+    def draw_note_at_coordenate(self, coordenate, color_a, color_b, label=''):
+        if self.is_horizontal:
+            rotation_angle = -45
+        else:
+            rotation_angle = 135
+        
         draw = ImageDraw.Draw(self.image)
         radius = 15
         upper_left = (coordenate[0] - radius, coordenate[1] - radius)
