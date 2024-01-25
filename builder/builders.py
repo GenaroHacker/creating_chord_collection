@@ -258,10 +258,13 @@ class LongBuilder(AbstractBuilder):
         self.name_coordenate = (330, 7)
 
     def draw_strings(self):
+        custom_grey = (210, 210, 210)
+
         for index, string_start in enumerate(self.strings_starting_points):
+            color = custom_grey if self.finger_ascending and self.finger_ascending[index] is None else 'black'
             start_point = (self.string_edges[0], string_start)
             end_point = (self.string_edges[1], string_start)
-            self.draw.line(start_point + end_point, fill='black', width=self.line_thickness - 1)
+            self.draw.line(start_point + end_point, fill=color, width=self.line_thickness - 1)
 
     def write_starting_fret(self):
         try:
