@@ -29,9 +29,9 @@ class Director:
         scale_name = None
         for key, value in scales.items():
             if value == scale:
-                scale_name = key
+                scale_name = f'{root} {key}'
                 break
         if not scale_name:
-            scale_name = str(scale)
+            scale_name = root
 
         self._build_diagram(root, starting_fret=1, scale=scale, name=scale_name)
