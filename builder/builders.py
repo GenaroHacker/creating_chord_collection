@@ -176,21 +176,35 @@ class AbstractBuilder:
 
         return scale_coordenates
 
-
+    
     def draw_notes(self):
+        # Calculate the chromatic scale starting from the root
+        root_index = self.all_notes.index(self.root)
+        chromatic_scale = [self.all_notes[(root_index + i) % len(self.all_notes)] for i in range(len(self.all_notes))]
+    
+        # Map notes to their scale degrees
+        note_to_degree = {note: degree for note, degree in zip(chromatic_scale, scale_degrees)}
+    
+        # Draw notes for the chord
         if self.finger_ascending is not None:
             chord_coords = self.get_chord_figure_coordenates()
             for coord in chord_coords:
                 note = self.coordenate_to_note(coord)
                 note_colors = self.get_note_colors(note)
-                self.draw_note_at_coordenate(coord, *note_colors, label=note)
-
+                # Use scale degree as label
+                label = note_to_degree.get(note, '')
+                self.draw_note_at_coordenate(coord, *note_colors, label=label)
+    
+        # Draw notes for the scale
         if self.scale is not None:
             scale_coords = self.get_scale_figure_coordenates()
             for coord in scale_coords:
                 note = self.coordenate_to_note(coord)
                 note_colors = self.get_note_colors(note)
-                self.draw_note_at_coordenate(coord, *note_colors, label=note)
+                # Use scale degree as label
+                label = note_to_degree.get(note, '')
+                self.draw_note_at_coordenate(coord, *note_colors, label=label)
+
 
 
 class ShortBuilder(AbstractBuilder):
