@@ -1,3 +1,5 @@
+from creating_chord_collection.collection.resources.scales import scales
+
 class Director:
     def __init__(self, builder):
         self._builder = builder
@@ -19,7 +21,7 @@ class Director:
 
     def build_chord(self, chord):
         # Generate the name for the chord
-        chord_name = f"{chord.root} {chord.chord_type}"
+        chord_name = f"{chord.root}{chord.chord_type}"
         self._build_diagram(chord.root, chord.starting_fret, finger_ascending=chord.finger_ascending, name=chord_name)
 
     def build_scale(self, root, scale):
