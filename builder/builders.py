@@ -235,10 +235,33 @@ class ShortBuilder(AbstractBuilder):
         custom_grey = (210, 210, 210)
 
         for index, string_start in enumerate(self.strings_starting_points):
-            color = custom_grey if self.finger_ascending and self.finger_ascending[index] is None else 'black'
+            # Determine if the string is an off string
+            is_off_string = self.finger_ascending and self.finger_ascending[index] is None
+
+            # Set the color to grey for off strings, otherwise black
+            color = custom_grey if is_off_string else 'black'
+            
+            # Draw the string
             start_point = (string_start, self.string_edges[0])
             end_point = (string_start, self.string_edges[1])
             self.draw.line(start_point + end_point, fill=color, width=self.line_thickness - 1)
+
+            # If the string is an off string, draw an 'X' at the 0 fret position
+            if is_off_string:
+                self.draw_x_at_string(string_start)
+
+    def draw_x_at_string(self, string_coord):
+        # Calculate the X coordinate for the 'X' mark
+        x_coord = string_coord
+
+        # Calculate the Y coordinate for the 'X' mark
+        y_coord = self.notes_coordenates["frets"][0]
+
+        # Define size and draw the 'X'
+        x_size = 10  # You can adjust the size of the 'X' mark as needed
+        self.draw.line([(x_coord - x_size, y_coord - x_size), (x_coord + x_size, y_coord + x_size)], fill='black', width=2)
+        self.draw.line([(x_coord - x_size, y_coord + x_size), (x_coord + x_size, y_coord - x_size)], fill='black', width=2)
+
 
     def write_starting_fret(self):
         try:
