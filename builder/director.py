@@ -26,7 +26,7 @@ class Director:
         self._build_diagram(chord.root, chord.starting_fret, finger_ascending=chord.finger_ascending, name=chord_name)
         self._save_image()  # Changed from _save_current_image to _save_image
 
-    def build_scale(self, root, scale):
+    def build_scale(self, root, scale, starting_fret=1):
         self._builder.name_coordenate = (self._builder.name_coordenate[0] - 45, self._builder.name_coordenate[1])
         scale_name = None
         for key, value in scales.items():
@@ -35,7 +35,7 @@ class Director:
                 break
         if not scale_name:
             scale_name = root
-        self._build_diagram(root, starting_fret=1, scale=scale, name=scale_name)
+        self._build_diagram(root, starting_fret, scale=scale, name=scale_name)
         self._save_image()
 
     def _save_image(self):
