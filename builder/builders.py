@@ -158,7 +158,14 @@ class AbstractBuilder:
         scale_coordenates = []
 
         for string_index, open_note in enumerate(self.open_string_notes):
-            for fret_index, fret in enumerate(self.notes_coordenates['frets']):
+            for fret_offset in range(len(self.notes_coordenates['frets'])):
+                # Skip the 0 fret (open string) coordinates if the diagram is vertical
+                if not self.is_horizontal and fret_offset == 0:
+                    continue
+
+                # Calculate the fret index considering the starting fret
+                fret_index = fret_offset + self.starting_fret - 1
+
                 # Calculate the note at this string and fret
                 note_index = (self.all_notes.index(open_note) + fret_index) % len(self.all_notes)
                 note = self.all_notes[note_index]
@@ -167,15 +174,11 @@ class AbstractBuilder:
                 if note in scale_notes:
                     # Calculate the coordenate
                     if self.is_horizontal:
-                        x_coord = fret
+                        x_coord = self.notes_coordenates['frets'][fret_offset]
                         y_coord = self.notes_coordenates['strings'][string_index]
                     else:
-                        y_coord = fret
+                        y_coord = self.notes_coordenates['frets'][fret_offset]
                         x_coord = self.notes_coordenates['strings'][string_index]
-
-                        # Adjust for starting fret if not horizontal
-                        if self.starting_fret > 1 and fret_index == 0:
-                            continue
 
                     # Append the coordenate to the list
                     scale_coordenates.append((x_coord, y_coord))
